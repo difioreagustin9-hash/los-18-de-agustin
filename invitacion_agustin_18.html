@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación Cumpleaños 18 - Agustin Di Fiore</title>
+<style>
+    body{
+        margin:0;
+        font-family: 'Georgia', serif;
+        background: linear-gradient(135deg,#111,#1e1e1e,#2d2d2d);
+        color:white;
+        overflow-x:hidden;
+    }
+
+    .overlay{
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:40px 20px;
+    }
+
+    .card{
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(10px);
+        border:1px solid rgba(255,255,255,0.15);
+        border-radius:30px;
+        padding:50px 35px;
+        max-width:700px;
+        width:100%;
+        text-align:center;
+        box-shadow:0 0 40px rgba(0,0,0,0.5);
+        animation:fadeUp 1.5s ease;
+    }
+
+    @keyframes fadeUp{
+        from{
+            opacity:0;
+            transform:translateY(40px);
+        }
+        to{
+            opacity:1;
+            transform:translateY(0);
+        }
+    }
+
+    h1{
+        font-size:3rem;
+        margin-bottom:10px;
+        letter-spacing:2px;
+    }
+
+    .subtitle{
+        font-size:1.3rem;
+        color:#d9d9d9;
+        margin-bottom:30px;
+    }
+
+    .gold{
+        color:#d4af37;
+    }
+
+    .countdown{
+        display:flex;
+        justify-content:center;
+        gap:15px;
+        flex-wrap:wrap;
+        margin:30px 0;
+    }
+
+    .time-box{
+        background:rgba(255,255,255,0.08);
+        padding:15px;
+        border-radius:20px;
+        min-width:90px;
+    }
+
+    .time-box span{
+        display:block;
+        font-size:2rem;
+        font-weight:bold;
+        color:#d4af37;
+    }
+
+    .info{
+        margin:25px 0;
+        line-height:1.8;
+        font-size:1.1rem;
+    }
+
+    form{
+        margin-top:30px;
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    input, select{
+        padding:14px;
+        border:none;
+        border-radius:12px;
+        font-size:1rem;
+    }
+
+    button{
+        padding:15px;
+        border:none;
+        border-radius:12px;
+        background:#d4af37;
+        color:black;
+        font-size:1rem;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    button:hover{
+        transform:scale(1.03);
+    }
+
+    .footer{
+        margin-top:30px;
+        color:#cfcfcf;
+        font-size:0.95rem;
+    }
+</style>
+</head>
+<body>
+
+<div class="overlay">
+    <div class="card">
+        <h1>Agustin Di Fiore</h1>
+        <div class="subtitle">Te invita a celebrar sus <span class="gold">18 años</span></div>
+
+        <p style="font-size:1.1rem;">
+            Una noche especial merece personas especiales.<br>
+            Espero contar con tu presencia para compartir este momento inolvidable.
+        </p>
+
+        <div class="countdown" id="countdown">
+            <div class="time-box"><span id="days">0</span>Días</div>
+            <div class="time-box"><span id="hours">0</span>Horas</div>
+            <div class="time-box"><span id="minutes">0</span>Min</div>
+            <div class="time-box"><span id="seconds">0</span>Seg</div>
+        </div>
+
+        <div class="info">
+            📅 18/07/2026 — 21:00 hs<br>
+            📍 Moreno 3364, Mar del Plata
+        </div>
+
+        <form action="https://formsubmit.co/Difioreagustin07@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="Nueva confirmación cumpleaños 18">
+            <input type="hidden" name="_template" value="table">
+
+            <input type="text" name="Nombre" placeholder="Tu nombre" required>
+
+            <select name="Asistencia" required>
+                <option value="">¿Vas a asistir?</option>
+                <option value="Sí, voy">Sí, voy 🎉</option>
+                <option value="No puedo ir">No puedo ir</option>
+            </select>
+
+            <input type="number" name="Cantidad de personas" placeholder="Cantidad de personas" min="1">
+
+            <button type="submit">Confirmar asistencia</button>
+        </form>
+
+        <div class="footer">
+            Elegante • Formal • Noche especial
+        </div>
+    </div>
+</div>
+
+<script>
+const targetDate = new Date("July 18, 2026 21:00:00").getTime();
+
+const timer = setInterval(function(){
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+    if(distance < 0){
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "¡La fiesta comenzó!";
+    }
+},1000);
+</script>
+
+</body>
+</html>
